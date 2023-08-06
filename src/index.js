@@ -1,7 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
+
+app.use(authRoutes);
 
 const mongoUri =
   "mongodb+srv://vgbasbaydar:veyselguven@cluster0.p1dlz3l.mongodb.net/";
@@ -9,7 +12,7 @@ const mongoUri =
 mongoose.connect(mongoUri);
 
 mongoose.connection.on("connected", () => {
-  console.log("connected to mongo instance");
+  console.log("Connected to mongo instance");
 });
 
 mongoose.connection.on("error", (err) => {
@@ -23,4 +26,3 @@ app.get("/", (req, res) => {
 app.listen(3000, () => {
   console.log("Listening on 3000");
 });
-// changed the folder
